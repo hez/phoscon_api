@@ -18,4 +18,7 @@ defmodule PhosconAPI.Telemetry do
       name: :phoscon_sensors
     )
   end
+
+  @spec fire_event(String.t(), map()) :: any()
+  def fire_event(id, event), do: :telemetry.execute([:phoscon, :event], %{id: id}, event)
 end
