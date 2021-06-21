@@ -16,10 +16,21 @@ config :phoscon_api, :connection,
   api_key: "<phoscon_api_key>"
 ```
 
-Add the following to start up polling.
+Add the following to your Application to start polling.
 
 ```
-PhosconAPI.Telemetry.start_polling()
+defmodule MyApp.Application do
+  use Application
+
+  def start(_type, _args) do
+    children = [
+      # ...
+      PhosconAPI.Telemetry.child_config()
+    ]
+    Supervisor.start_link(children, opts)
+  end
+end
+
 ```
 
 Write something to capture the telemetry events.
