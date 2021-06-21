@@ -11,7 +11,7 @@ defmodule PhosconAPI do
 
   defp response_parse({:ok, %_{body: body}}), do: Jason.decode!(body)
 
-  defp client() do
+  defp client do
     middleware = [{Tesla.Middleware.BaseUrl, host()}]
     Tesla.client(middleware)
   end
