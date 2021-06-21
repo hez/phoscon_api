@@ -11,12 +11,11 @@ defmodule PhosconAPI.Telemetry do
     end)
   end
 
-  def start_polling do
-    :telemetry_poller.start_link(
-      measurements: [{__MODULE__, :fetch_all, []}],
-      period: :timer.seconds(PhosconAPI.interval()),
-      name: :phoscon_sensors
-    )
+  def child_config do
+    {:telemetry_poller,
+     measurements: [{__MODULE__, :fetch_all, []}],
+     period: :timer.seconds(PhosconAPI.interval()),
+     name: :phoscon_sensors}
   end
 
   @spec fire_event(String.t(), map()) :: any()
