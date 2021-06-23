@@ -21,5 +21,5 @@ defmodule PhosconAPI do
   def interval, do: config_fetch(:refresh_interval) || 60
 
   defp config_fetch(key),
-    do: :phoscon_api |> Application.get_env(:connection) |> Keyword.get(key)
+    do: :phoscon_api |> Application.get_env(:connection, []) |> Keyword.get(key)
 end
