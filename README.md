@@ -6,7 +6,7 @@ A simple Elixir wrapper around some of the endpoints provided by the [Phoscon](h
 
 Add the following dependancy to mix.exs
 
-`{:phoscon_api, github: "hez/phoscon-api", tag: "v0.3.1"}`
+`{:phoscon_api, github: "hez/phoscon-api", tag: "v0.3.2"}`
 
 Add some config
 
