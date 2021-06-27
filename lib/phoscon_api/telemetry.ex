@@ -4,16 +4,15 @@ defmodule PhosconAPI.Telemetry do
   def fetch_all do
     case PhosconAPI.TemperatureSensor.all() do
       {:ok, response} ->
-        values =
-          response
-          |> PhosconAPI.TemperatureSensor.convert()
-          |> Enum.each(fn {host, v} ->
-            Enum.each(v, fn {key, reading} ->
-              :telemetry.execute([:phoscon, :sensor, :read], %{key => reading}, %{host: host})
-            end)
+        response
+        |> PhosconAPI.TemperatureSensor.convert()
+        |> Enum.each(fn {host, v} ->
+          Enum.each(v, fn {key, reading} ->
+            :telemetry.execute([:phoscon, :sensor, :read], %{key => reading}, %{host: host})
           end)
+        end)
 
-        {:ok, values}
+        :ok
 
       {:error, _} = err ->
         Logger.error("Error fetching all sensors, #{inspect(err)}")
