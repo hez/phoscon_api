@@ -6,9 +6,12 @@ defmodule PhosconAPI.TemperatureSensor do
   def all do
     case PhosconAPI.sensors() do
       {:ok, resp} ->
-        resp
-        |> Enum.filter(&Enum.member?(@known_models, elem(&1, 1)["modelid"]))
-        |> Enum.map(&elem(&1, 1))
+        values =
+          resp
+          |> Enum.filter(&Enum.member?(@known_models, elem(&1, 1)["modelid"]))
+          |> Enum.map(&elem(&1, 1))
+
+        {:ok, values}
 
       {:error, _} = err ->
         err
