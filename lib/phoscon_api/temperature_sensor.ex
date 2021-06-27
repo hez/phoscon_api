@@ -2,10 +2,17 @@ defmodule PhosconAPI.TemperatureSensor do
   @known_models ["lumi.weather"]
   @divisor 100.0
 
+  @spec all :: {:ok, any()} | {:error, String.t()}
   def all do
-    PhosconAPI.sensors()
-    |> Enum.filter(&Enum.member?(@known_models, elem(&1, 1)["modelid"]))
-    |> Enum.map(&elem(&1, 1))
+    case PhosconAPI.sensors() do
+      {:ok, resp} ->
+        resp
+        |> Enum.filter(&Enum.member?(@known_models, elem(&1, 1)["modelid"]))
+        |> Enum.map(&elem(&1, 1))
+
+      {:error, _} = err ->
+        err
+    end
   end
 
   def convert(sensors) do

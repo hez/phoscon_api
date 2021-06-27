@@ -2,13 +2,22 @@ defmodule PhosconAPI.Telemetry do
   require Logger
 
   def fetch_all do
-    PhosconAPI.TemperatureSensor.all()
-    |> PhosconAPI.TemperatureSensor.convert()
-    |> Enum.each(fn {host, v} ->
-      Enum.each(v, fn {key, reading} ->
-        :telemetry.execute([:phoscon, :sensor, :read], %{key => reading}, %{host: host})
-      end)
-    end)
+    case PhosconAPI.TemperatureSensor.all() do
+      {:ok, response} ->
+        values =
+          response
+          |> PhosconAPI.TemperatureSensor.convert()
+          |> Enum.each(fn {host, v} ->
+            Enum.each(v, fn {key, reading} ->
+              :telemetry.execute([:phoscon, :sensor, :read], %{key => reading}, %{host: host})
+            end)
+          end)
+
+        {:ok, values}
+
+      {:error, _} = err ->
+        Logger.error("Error fetching all sensors, #{inspect(err)}")
+    end
   end
 
   def child_config do
