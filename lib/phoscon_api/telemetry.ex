@@ -6,11 +6,7 @@ defmodule PhosconAPI.Telemetry do
       {:ok, response} ->
         response
         |> PhosconAPI.TemperatureSensor.convert()
-        |> Enum.each(fn {host, v} ->
-          Enum.each(v, fn {key, reading} ->
-            :telemetry.execute([:phoscon, :sensor, :read], %{key => reading}, %{host: host})
-          end)
-        end)
+        |> Enum.each(&fire_sensors/1)
 
         :ok
 
@@ -28,4 +24,10 @@ defmodule PhosconAPI.Telemetry do
 
   @spec fire_event(String.t(), map()) :: any()
   def fire_event(id, event), do: :telemetry.execute([:phoscon, :event], %{id: id}, event)
+
+  defp fire_sensors({host, values}) do
+    Enum.each(values, fn {key, reading} ->
+      :telemetry.execute([:phoscon, :sensor, :read], %{key => reading}, %{host: host})
+    end)
+  end
 end
