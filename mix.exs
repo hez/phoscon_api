@@ -25,7 +25,7 @@ defmodule PhosconAPI.MixProject do
     [
       # Dev and test
       {:credo, "~> 1.6.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.1.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.2.0", only: [:dev, :test], runtime: false},
       # Everything else
       {:jason, "~> 1.2"},
       {:tesla, "~> 1.4.0"},
