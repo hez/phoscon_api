@@ -28,7 +28,7 @@ defmodule PhosconAPI.MixProject do
       {:dialyxir, "~> 1.2.0", only: [:dev, :test], runtime: false},
       # Everything else
       {:jason, "~> 1.2"},
-      {:tesla, "~> 1.4.0"},
+      {:tesla, "~> 1.5.0"},
       {:telemetry, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
