@@ -1,13 +1,13 @@
 defmodule PhosconAPI.MixProject do
   use Mix.Project
 
-  @version "0.3.4"
+  @version "0.3.5"
 
   def project do
     [
       app: :phoscon_api,
       version: @version,
-      elixir: "~> 1.11",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -28,10 +28,10 @@ defmodule PhosconAPI.MixProject do
       {:dialyxir, "~> 1.2.0", only: [:dev, :test], runtime: false},
       # Everything else
       {:jason, "~> 1.2"},
-      {:tesla, "~> 1.4.0"},
-      {:telemetry, "~> 0.4"},
+      {:tesla, "~> 1.5"},
+      {:telemetry, "~> 1.1"},
       {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
+      {:telemetry_poller, "~> 1.0"},
       {:websockex, "~> 0.4"}
     ]
   end
