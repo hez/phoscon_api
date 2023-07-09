@@ -13,9 +13,9 @@ defmodule PhosconAPI.EventHandler do
         } = event,
         conf
       ) do
-    Logger.info(inspect(measurements), label: :measurements)
-    Logger.info(inspect(event), label: :event)
-    Logger.info(inspect(conf), label: :conf)
+    Logger.debug(inspect(measurements))
+    Logger.debug(inspect(event))
+    Logger.debug(inspect(conf))
 
     id
     |> String.to_integer()

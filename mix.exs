@@ -24,7 +24,7 @@ defmodule PhosconAPI.MixProject do
   defp deps do
     [
       # Dev and test
-      {:credo, "~> 1.6.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.3.0", only: [:dev, :test], runtime: false},
       # Everything else
       {:jason, "~> 1.2"},
