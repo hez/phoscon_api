@@ -30,7 +30,7 @@ defmodule PhosconAPI.MixProject do
       {:jason, "~> 1.2"},
       {:tesla, "~> 1.5"},
       {:telemetry, "~> 1.1"},
-      {:telemetry_metrics, "~> 0.4"},
+      {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:websockex, "~> 0.4"}
     ]
