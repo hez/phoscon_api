@@ -1,13 +1,13 @@
 defmodule PhosconAPI.MixProject do
   use Mix.Project
 
-  @version "0.3.6"
+  @version "0.3.7"
 
   def project do
     [
       app: :phoscon_api,
       version: @version,
-      elixir: "~> 1.13",
+      elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
